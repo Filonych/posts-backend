@@ -3,7 +3,7 @@ const PostsModel = require("../models/postsModel");
 class PostsController {
   async getPosts(req, res) {
     try {
-      const result = await PostsModel.find({}, "title");
+      const result = await PostsModel.find({});
       res.status(200).json({ posts: result });
     } catch (error) {
       res.status(400).json({ message: "Произошла ошибка при получении" });
