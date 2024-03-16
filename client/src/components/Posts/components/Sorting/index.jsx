@@ -8,7 +8,7 @@ import { Link } from "../../../ui/Link";
 import * as SC from "./styles";
 
 export const Sorting = ({ updatePosts }) => {
-  const { searchValue, sort, order } = useSelector(
+  const { searchValue, order } = useSelector(
     (state) => state.filter.filter
   );
   const dispatch = useDispatch();

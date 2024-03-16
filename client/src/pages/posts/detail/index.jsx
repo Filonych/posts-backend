@@ -8,7 +8,6 @@ import { Link } from "../../../components/ui/Link";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getPostById,
-  showPost,
   deletePost,
 } from "../../../redux/slices/postsSlice";
 import { Button } from "../../../components/ui/Button";
