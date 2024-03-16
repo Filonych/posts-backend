@@ -29,6 +29,13 @@ export const addPost = createAsyncThunk(
   }
 );
 
+export const deletePost = createAsyncThunk(
+  "posts/fetchDeletePost",
+  async ({ id }) => {
+    return await postsAPI.fetchDeletePost(id);
+  }
+);
+
 const initialState = {
   posts: {
     list: null,
@@ -64,16 +71,16 @@ export const postsSlice = createSlice({
         loading: false,
       };
     },
-    deletePost: (state, action) => {
-      state.posts.list = state.posts.list.filter(
-        (post) => post.id !== action.payload.id
-      );
-      state.postForView = {
-        post: null,
-        loading: false,
-      };
-      state.freshPosts.freshPosts = state.posts.list.slice(0, 3);
-    },
+    // deletePost: (state, action) => {
+    //   state.posts.list = state.posts.list.filter(
+    //     (post) => post.id !== action.payload.id
+    //   );
+    //   state.postForView = {
+    //     post: null,
+    //     loading: false,
+    //   };
+    //   state.freshPosts.freshPosts = state.posts.list.slice(0, 3);
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -117,6 +124,6 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { editPost, showPost, deletePost } = postsSlice.actions;
+export const { editPost, showPost } = postsSlice.actions;
 
 export default postsSlice.reducer;

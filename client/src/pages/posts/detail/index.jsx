@@ -26,8 +26,6 @@ export const DetailPostPage = () => {
 
   const [postForDelete, setPostForDelete] = useState(null);
 
-  const showEditandDeleteBtn = list && user;
-
   const onDeletePost = () => {
     dispatch(deletePost(postForDelete));
     setPostForDelete(null);
@@ -76,10 +74,10 @@ export const DetailPostPage = () => {
       <div style={{ clear: "both" }} />
       <SC.LinkWrapper>
         <Link to="/posts">Обратно к публикациям</Link>
-        {showEditandDeleteBtn && (
+        {user && (
           <Link to={`/posts/${id}/edit`}>Редактировать</Link>
         )}
-        {showEditandDeleteBtn && (
+        {user && (
           <Button hoverColor="red" onClick={() => setPostForDelete(post)}>
             Удалить
           </Button>

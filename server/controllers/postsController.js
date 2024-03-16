@@ -51,13 +51,13 @@ class PostsController {
 
   async deletePost(req, res) {
     try {
-      if (!req.body.title) {
-        res.status(400).json({ message: "Пожалуйста, укажите заголовок" });
+      if (!req.body.id) {
+        res.status(400).json({ message: "Пожалуйста, укажите id" });
         return;
       }
 
       const { deletedCount } = await PostsModel.deleteOne({
-        title: req.body.title,
+        id: req.body.id ,
       });
 
       if (deletedCount === 0) {

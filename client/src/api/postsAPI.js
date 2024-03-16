@@ -61,6 +61,26 @@ export const postsAPI = {
       console.log(ex);
     }
   },
+
+  fetchDeletePost(id) {
+    try {
+      if (!id) {
+        throw new Error("ID is broken");
+      }
+      return fetch(`http://localhost:3003/api/posts/delete`, {
+        method: 'DELETE',
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+        }),
+      })
+    } catch (ex) {
+      console.log(ex);
+    }
+  },
 };
 
 // fetchPosts(searchValue, currentPage, sort) {
