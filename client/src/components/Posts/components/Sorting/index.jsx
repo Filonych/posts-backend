@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentPage, setSort, setOrder } from "../../../../redux/slices/filterSlice";
+import {
+  setCurrentPage,
+  setSort,
+  setOrder,
+} from "../../../../redux/slices/filterSlice";
 import { Link } from "../../../ui/Link";
 import * as SC from "./styles";
 
@@ -15,10 +19,10 @@ export const Sorting = ({ updatePosts }) => {
   ];
 
   const sortPosts = (orderProperty) => {
-    dispatch(setSort('title'));
+    dispatch(setSort("title"));
     dispatch(setOrder(orderProperty));
     dispatch(setCurrentPage(1));
-    updatePosts(searchValue, 1, 'title', orderProperty);
+    updatePosts(searchValue, 1, "title", orderProperty);
   };
 
   return (

@@ -1,3 +1,5 @@
-import * as SC from './styles';
+import * as SC from "./styles";
 
-export const Link = ({ children, ...props }) => <SC.SimpleLink {...props}>{children}</SC.SimpleLink>
+export const Link = ({ children, ...props }) => (
+  <SC.SimpleLink {...props}>{children}</SC.SimpleLink>
+);

@@ -32,16 +32,14 @@ export const DetailPostPage = () => {
     navigate("/posts");
   };
 
-  useEffect(() => {    
-
-      dispatch(getPostById(id));
-    
+  useEffect(() => {
+    dispatch(getPostById(id));
   }, [dispatch, list, id]);
 
   const { post, loading } = postForView;
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   if (!post || !post.hasOwnProperty("id")) {
@@ -73,9 +71,7 @@ export const DetailPostPage = () => {
       <div style={{ clear: "both" }} />
       <SC.LinkWrapper>
         <Link to="/posts">Обратно к публикациям</Link>
-        {user && (
-          <Link to={`/posts/${id}/edit`}>Редактировать</Link>
-        )}
+        {user && <Link to={`/posts/${id}/edit`}>Редактировать</Link>}
         {user && (
           <Button className="red" onClick={() => setPostForDelete(post)}>
             Удалить

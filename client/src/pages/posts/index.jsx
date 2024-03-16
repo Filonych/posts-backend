@@ -38,7 +38,7 @@ export const PostsPage = () => {
       <Typo>Публикации</Typo>
       <Container>
         <SC.Wrap>
-          <Search updatePosts={updatePosts}/>
+          <Search updatePosts={updatePosts} />
           <Sorting updatePosts={updatePosts} />
         </SC.Wrap>
         <Posts posts={list} />

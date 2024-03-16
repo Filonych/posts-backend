@@ -46,7 +46,7 @@ export const postsAPI = {
 
   fetchNewPost(title, body, id) {
     try {
-       fetch("http://localhost:3003/api/posts/add", {
+      fetch("http://localhost:3003/api/posts/add", {
         method: "POST",
         body: JSON.stringify({
           title,
@@ -56,7 +56,7 @@ export const postsAPI = {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
-      })        
+      });
     } catch (ex) {
       console.log(ex);
     }
@@ -68,7 +68,7 @@ export const postsAPI = {
         throw new Error("ID is broken");
       }
       fetch(`http://localhost:3003/api/posts/delete`, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export const postsAPI = {
         body: JSON.stringify({
           id,
         }),
-      })
+      });
     } catch (ex) {
       console.log(ex);
     }
@@ -94,7 +94,7 @@ export const postsAPI = {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
-      })        
+      });
     } catch (ex) {
       console.log(ex);
     }

@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Wrap = styled.div`
   display: flex;
   justify-content: center;
-  gap: 25px;  
-`
+  gap: 25px;
+`;
 
-export const Page = styled.div`  
+export const Page = styled.div`
   cursor: pointer;
 
   &:hover {
@@ -16,4 +16,4 @@ export const Page = styled.div`
   &.active {
     color: #00bcd4;
   }
-`
+`;
