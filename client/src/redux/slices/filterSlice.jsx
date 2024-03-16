@@ -5,7 +5,7 @@ const initialState = {
     searchValue: "",
     currentPage: 1,
     sort: 'id',
-    order: "DESC"
+    order: "desc"
   },
 };
 
