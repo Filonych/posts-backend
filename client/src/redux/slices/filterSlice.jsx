@@ -4,7 +4,8 @@ const initialState = {
   filter: {
     searchValue: "",
     currentPage: 1,
-    sort: "id&_order=desc",
+    sort: 'id',
+    order: "DESC"
   },
 };
 

@@ -1,29 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchValue } from "../../../../redux/slices/filterSlice";
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Input } from "../../../ui/Input";
 
-export const Search = () => {
+export const Search = ({ updatePosts }) => {
   const dispatch = useDispatch();
-  const { searchValue } = useSelector((state) => state.filter.filter);
+  const { searchValue, sort } = useSelector((state) => state.filter.filter);
 
   const [inputValue, setInputValue] = useState(searchValue);
-  const [debouncedValue, setDebouncedValue] = useState("");
 
-  useEffect(() => {
-    dispatch(setSearchValue(inputValue));
-  }, [debouncedValue]);
+  const debounce = (fn, delay) => {
+    let timerId;
+    return (...args) => {
+      clearTimeout(timerId);
+      timerId = setTimeout(() => fn(...args), delay);
+    };
+  };  
 
-  const updateSearchValue = () => {
-    const timeoutId = setTimeout(() => {
-      setDebouncedValue(inputValue);
-    }, 1000);
-    return () => clearTimeout(timeoutId);
-  };
+  const debouncedUpdatePosts = useCallback(
+    debounce((value) => {
+      updatePosts(value, 1, sort);
+    }, 300), 
+    [updatePosts, sort]
+  );
 
   const onChangeInput = (event) => {
-    setInputValue(event.target.value);
-    updateSearchValue(event.target.value);
+    const value = event.target.value;
+    setInputValue(value);
+    debouncedUpdatePosts(value);
+    dispatch(setSearchValue(value));
   };
 
   return (

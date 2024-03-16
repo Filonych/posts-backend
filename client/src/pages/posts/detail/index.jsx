@@ -34,17 +34,11 @@ export const DetailPostPage = () => {
     navigate("/posts");
   };
 
-  useEffect(() => {
-    const intId = Number(id);
-    const findedPost = list
-      ? list.find((item) => item.id === intId)
-      : undefined;
+  useEffect(() => {    
 
-    if (findedPost) {
-      dispatch(showPost(findedPost));
-    } else {
-      dispatch(getPostById(Number(id)));
-    }
+      dispatch(getPostById(id));
+      console.log(id)
+    
   }, [dispatch, list, id]);
 
   const { post, loading } = postForView;

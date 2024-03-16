@@ -12,14 +12,18 @@ import * as SC from "./styles";
 
 export const PostsPage = () => {
   const { list, loading } = useSelector((state) => state.posts.posts);
-  const { searchValue, currentPage, sort } = useSelector(
+  const { searchValue, currentPage, sort, order } = useSelector(
     (state) => state.filter.filter
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts({ searchValue, currentPage, sort }));
-  }, [searchValue, currentPage, sort]);
+    updatePosts(searchValue, currentPage, sort, order);
+  }, []);
+
+  const updatePosts = (searchValue, currentPage, sort, order) => {
+    dispatch(getPosts({ searchValue, currentPage, sort, order }));
+  };
 
   if (!list && loading) {
     return <Loader />;
@@ -34,11 +38,11 @@ export const PostsPage = () => {
       <Typo>Публикации</Typo>
       <Container>
         <SC.Wrap>
-          <Search />
-          <Sorting />
+          <Search updatePosts={updatePosts}/>
+          <Sorting updatePosts={updatePosts} />
         </SC.Wrap>
         <Posts posts={list} />
-        <Pagination />
+        <Pagination updatePosts={updatePosts} />
       </Container>
     </>
   );

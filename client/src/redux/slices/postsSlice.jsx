@@ -3,8 +3,8 @@ import { postsAPI } from "../../api/postsAPI";
 
 export const getPosts = createAsyncThunk(
   "posts/fetchPosts",
-  async ({ searchValue, currentPage, sort }) => {
-    return await postsAPI.fetchPosts(searchValue, currentPage, sort);
+  async ({ searchValue, currentPage, sort, order }) => {
+    return await postsAPI.fetchPosts(searchValue, currentPage, sort, order);
   }
 );
 
@@ -24,8 +24,8 @@ export const getPostById = createAsyncThunk(
 
 export const addPost = createAsyncThunk(
   "posts/fetchNewPost",
-  async ({ title, body }) => {
-    return await postsAPI.fetchNewPost(title, body);
+  async ({ title, body, id }) => {
+    return await postsAPI.fetchNewPost(title, body, id);
   }
 );
 
@@ -58,14 +58,6 @@ export const postsSlice = createSlice({
       });
       state.freshPosts.freshPosts = state.posts.list.slice(0, 3);
     },
-    // addPost: (state, action) => {
-    //   const newPost = { ...action.payload };
-    //   newPost.id = new Date().getTime();
-    //   state.posts.list = state.posts.list
-    //     ? [newPost, ...state.posts.list]
-    //     : [newPost];
-    //   state.freshPosts.freshPosts = state.posts.list.slice(0, 3);
-    // },
     showPost: (state, action) => {
       state.postForView = {
         post: action.payload,
@@ -118,14 +110,9 @@ export const postsSlice = createSlice({
       })
       .addCase(getPostById.fulfilled, (state, action) => {
         state.postForView = {
-          post: action.payload,
+          post: action.payload.post,
           loading: false,
         };
-      })
-      .addCase(addPost.fulfilled, (state, action) => {
-        const newPost = { ...action.payload };
-        state.posts.list = [newPost, ...state.posts.list];
-        state.freshPosts.freshPosts = state.posts.list.slice(0, 3);
       });
   },
 });

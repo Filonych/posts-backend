@@ -8,14 +8,14 @@ import { Loader } from "../../components/ui/Loader";
 
 export const MainPage = () => {
   const postForView = useSelector((state) => state.posts.postForView);
-  const { freshPosts, loading } = useSelector((state) => state.posts.freshPosts);
+  const { freshPosts, loading } = useSelector(
+    (state) => state.posts.freshPosts
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!freshPosts) {
-      dispatch(getFreshPosts());
-    }
-  }, [freshPosts, dispatch]);
+    dispatch(getFreshPosts());
+  }, []);
 
   return (
     <>

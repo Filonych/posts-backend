@@ -11,7 +11,9 @@ export const AddPostPage = () => {
 
   const onSubmitForm = (formValues) => {
     console.log(formValues)
+    formValues.id = new Date().getTime()
     // setShowModal(true)
+    console.log(formValues)
     dispatch(addPost(formValues))
     
   };

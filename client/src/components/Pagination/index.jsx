@@ -4,9 +4,11 @@ import { setCurrentPage } from "../../redux/slices/filterSlice";
 
 const ITEMS_PER_PAGE = 10;
 
-export const Pagination = () => {
+export const Pagination = ({ updatePosts }) => {
   const dispatch = useDispatch();
-  const { currentPage } = useSelector((state) => state.filter.filter);
+  const { searchValue, currentPage, sort, order } = useSelector(
+    (state) => state.filter.filter
+  );
   const totalCount = useSelector((state) => state.posts.totalCount);
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
@@ -18,6 +20,7 @@ export const Pagination = () => {
 
   const changeCurrentPage = (page) => {
     dispatch(setCurrentPage(page));
+    updatePosts(searchValue, page, sort, order);
   };
 
   return (
