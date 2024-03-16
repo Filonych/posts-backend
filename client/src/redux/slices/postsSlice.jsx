@@ -36,6 +36,13 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+export const editPost = createAsyncThunk(
+  "posts/fetchEditPost",
+  async ({ title, body, id }) => {
+    return await postsAPI.fetchEditPost(title, body, id);
+  }
+);
+
 const initialState = {
   posts: {
     list: null,
@@ -124,6 +131,6 @@ export const postsSlice = createSlice({
   },
 });
 
-export const { editPost, showPost } = postsSlice.actions;
+export const { showPost } = postsSlice.actions;
 
 export default postsSlice.reducer;

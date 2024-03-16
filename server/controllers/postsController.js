@@ -79,9 +79,10 @@ class PostsController {
         return;
       }
 
-      const updatedPost = await PostsModel.findByIdAndUpdate(
-        req.body.id,
-        { title: req.body.title },
+      const updatedPost = await PostsModel.findOneAndUpdate(
+        { id: req.body.id },
+        { title: req.body.title,
+        body: req.body.body },
         { new: true }
       );
 
@@ -91,11 +92,9 @@ class PostsController {
           .json({ message: "Произошла ошибка при редактировании" });
       }
 
-      const allPosts = await PostsModel.find();
-
       res
         .status(200)
-        .json({ posts: allPosts, message: "Элемент успешно отредактирован" });
+        .json({ message: "Элемент успешно отредактирован" });
     } catch (e) {
       res.status(400).json({ message: "Произошла ошибка при редактировании" });
     }

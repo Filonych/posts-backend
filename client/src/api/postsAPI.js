@@ -81,6 +81,24 @@ export const postsAPI = {
       console.log(ex);
     }
   },
+
+  fetchEditPost(title, body, id) {
+    try {
+      return fetch("http://localhost:3003/api/posts/edit", {
+        method: "PUT",
+        body: JSON.stringify({
+          title,
+          body,
+          id,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })        
+    } catch (ex) {
+      console.log(ex);
+    }
+  },
 };
 
 // fetchPosts(searchValue, currentPage, sort) {
