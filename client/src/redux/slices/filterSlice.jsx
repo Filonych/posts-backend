@@ -4,8 +4,8 @@ const initialState = {
   filter: {
     searchValue: "",
     currentPage: 1,
-    sort: 'id',
-    order: "desc"
+    sort: "id",
+    order: "desc",
   },
 };
 
@@ -15,6 +15,7 @@ const filterSlice = createSlice({
   reducers: {
     setSearchValue(state, action) {
       state.filter.searchValue = action.payload;
+      state.filter.currentPage = initialState.filter.currentPage;
     },
     setSort(state, action) {
       state.filter.sort = action.payload;
@@ -28,6 +29,7 @@ const filterSlice = createSlice({
   },
 });
 
-export const { setSort, setCurrentPage, setSearchValue, setOrder } = filterSlice.actions;
+export const { setSort, setCurrentPage, setSearchValue, setOrder } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -5,7 +5,9 @@ import { Input } from "../../../ui/Input";
 
 export const Search = ({ updatePosts }) => {
   const dispatch = useDispatch();
-  const { searchValue, sort } = useSelector((state) => state.filter.filter);
+  const { searchValue, currentPage, sort, order } = useSelector(
+    (state) => state.filter.filter
+  );
 
   const [inputValue, setInputValue] = useState(searchValue);
 
@@ -15,13 +17,14 @@ export const Search = ({ updatePosts }) => {
       clearTimeout(timerId);
       timerId = setTimeout(() => fn(...args), delay);
     };
-  };  
+  };
 
   const debouncedUpdatePosts = useCallback(
     debounce((value) => {
-      updatePosts(value, 1, sort);
-    }, 300), 
-    [updatePosts, sort]
+      console.log(value);
+      updatePosts(value, currentPage, sort, order);
+    }, 500),
+    []
   );
 
   const onChangeInput = (event) => {
