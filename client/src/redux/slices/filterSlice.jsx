@@ -15,7 +15,9 @@ const filterSlice = createSlice({
   reducers: {
     setSearchValue(state, action) {
       state.filter.searchValue = action.payload;
+      state.filter.sort = initialState.filter.sort;
       state.filter.currentPage = initialState.filter.currentPage;
+      state.filter.order = initialState.filter.order;
     },
     setSort(state, action) {
       state.filter.sort = action.payload;

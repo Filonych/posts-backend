@@ -21,8 +21,6 @@ export const Sorting = ({ updatePosts }) => {
     updatePosts(searchValue, 1, 'title', orderProperty);
   };
 
-  console.log(order)
-
   return (
     <div>
       <h3>Сортировка</h3>

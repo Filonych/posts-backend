@@ -35,7 +35,6 @@ export const DetailPostPage = () => {
   useEffect(() => {    
 
       dispatch(getPostById(id));
-      console.log(id)
     
   }, [dispatch, list, id]);
 

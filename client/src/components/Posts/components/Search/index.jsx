@@ -21,7 +21,6 @@ export const Search = ({ updatePosts }) => {
 
   const debouncedUpdatePosts = useCallback(
     debounce((value) => {
-      console.log(value);
       updatePosts(value, currentPage, sort, order);
     }, 500),
     []

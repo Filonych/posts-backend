@@ -84,7 +84,7 @@ export const postsAPI = {
 
   fetchEditPost(title, body, id) {
     try {
-      return fetch("http://localhost:3003/api/posts/edit", {
+      fetch("http://localhost:3003/api/posts/edit", {
         method: "PUT",
         body: JSON.stringify({
           title,
@@ -100,21 +100,3 @@ export const postsAPI = {
     }
   },
 };
-
-// fetchPosts(searchValue, currentPage, sort) {
-//   try {
-//     return fetch(
-//       `https://jsonplaceholder.typicode.com/posts/?_sort=${sort}&title_like=${searchValue}&_page=${currentPage}`
-//     ).then((response) => {
-//       const totalCount = response.headers.get("X-Total-Count");
-//       return response.json().then((posts) => ({ posts, totalCount }));
-//     });
-//   } catch (ex) {
-//     console.log(ex);
-//   }
-// },
-
-// _sort=${sort}&title_like=${searchValue}&
-
-
-// &_sort=id&_order=desc
