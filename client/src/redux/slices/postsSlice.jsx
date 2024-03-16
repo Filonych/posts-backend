@@ -63,31 +63,12 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    editPost: (state, action) => {
-      state.posts.list = state.posts.list.map((post) => {
-        if (post.id === action.payload.id) {
-          return action.payload;
-        }
-        return post;
-      });
-      state.freshPosts.freshPosts = state.posts.list.slice(0, 3);
-    },
     showPost: (state, action) => {
       state.postForView = {
         post: action.payload,
         loading: false,
       };
     },
-    // deletePost: (state, action) => {
-    //   state.posts.list = state.posts.list.filter(
-    //     (post) => post.id !== action.payload.id
-    //   );
-    //   state.postForView = {
-    //     post: null,
-    //     loading: false,
-    //   };
-    //   state.freshPosts.freshPosts = state.posts.list.slice(0, 3);
-    // },
   },
   extraReducers: (builder) => {
     builder

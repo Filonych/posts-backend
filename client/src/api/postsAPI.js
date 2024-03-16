@@ -46,7 +46,7 @@ export const postsAPI = {
 
   fetchNewPost(title, body, id) {
     try {
-      return fetch("http://localhost:3003/api/posts/add", {
+       fetch("http://localhost:3003/api/posts/add", {
         method: "POST",
         body: JSON.stringify({
           title,
@@ -67,7 +67,7 @@ export const postsAPI = {
       if (!id) {
         throw new Error("ID is broken");
       }
-      return fetch(`http://localhost:3003/api/posts/delete`, {
+      fetch(`http://localhost:3003/api/posts/delete`, {
         method: 'DELETE',
         headers: {
           Accept: "application/json",
