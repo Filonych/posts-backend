@@ -9,7 +9,7 @@ export const Button = styled.button`
     cursor: pointer;
 
     &:hover {
-        background: ${({ hoverColor }) => hoverColor || '#21a6b7'};
+        background: ${({ className }) => className === 'red' ? 'red' : '#21a6b7'};
     }
 
     &:disabled {

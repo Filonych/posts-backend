@@ -60,7 +60,7 @@ export const DetailPostPage = () => {
           text={`Вы точно хотите удалить пост с ID - ${post.id}?`}
           buttons={
             <>
-              <Button hoverColor="red" onClick={onDeletePost}>
+              <Button className="red" onClick={onDeletePost}>
                 Да
               </Button>
               <Button onClick={() => setPostForDelete(null)}>Нет</Button>
@@ -78,7 +78,7 @@ export const DetailPostPage = () => {
           <Link to={`/posts/${id}/edit`}>Редактировать</Link>
         )}
         {user && (
-          <Button hoverColor="red" onClick={() => setPostForDelete(post)}>
+          <Button className="red" onClick={() => setPostForDelete(post)}>
             Удалить
           </Button>
         )}
