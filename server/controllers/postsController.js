@@ -7,9 +7,14 @@ class PostsController {
 
       const page = parseInt(_page) || 1;
       const perPage = parseInt(_perPage) || 10;
-      const sort = _sort;
-      const order = _order && _order.toUpperCase() === "DESC" ? -1 : 1;
-      const searchValue = _searchValue || "";
+      const sort = _sort === "undefined" ? "id" : _sort;
+
+      const order =
+        (_order && _order.toUpperCase() === "DESC") || _order === "undefined"
+          ? -1
+          : 1;
+      const searchValue =
+        _searchValue === "" || _searchValue === "undefined" ? "" : _searchValue;
 
       const filter = searchValue ? { title: new RegExp(searchValue, "i") } : {};
 

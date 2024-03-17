@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchValue } from "../../../../redux/slices/filterSlice";
+import {
+  resetFilter,
+  setSearchValue,
+} from "../../../../redux/slices/filterSlice";
 import { useCallback, useState } from "react";
 import { Input } from "../../../ui/Input";
 
@@ -21,8 +24,8 @@ export const Search = ({ updatePosts }) => {
 
   const debouncedUpdatePosts = useCallback(
     debounce((value) => {
-      const currentPage = 1
       updatePosts(value, currentPage, sort, order);
+      dispatch(resetFilter());
     }, 500),
     []
   );

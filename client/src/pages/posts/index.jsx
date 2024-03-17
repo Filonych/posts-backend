@@ -9,16 +9,16 @@ import { Pagination } from "../../components/Pagination";
 import { Search } from "../../components/Posts/components/Search";
 import { Sorting } from "../../components/Posts/components/Sorting";
 import * as SC from "./styles";
+import { resetFilter, setSearchValue } from "../../redux/slices/filterSlice";
 
 export const PostsPage = () => {
   const { list, loading } = useSelector((state) => state.posts.posts);
-  const { searchValue, currentPage, sort, order } = useSelector(
-    (state) => state.filter.filter
-  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    updatePosts(searchValue, currentPage, sort, order);
+    dispatch(resetFilter());
+    dispatch(setSearchValue(""));
+    updatePosts();
   }, []);
 
   const updatePosts = (searchValue, currentPage, sort, order) => {
