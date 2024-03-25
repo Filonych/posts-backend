@@ -16,10 +16,10 @@ class PostsController {
       const searchValue =
         _searchValue === "" || _searchValue === "undefined" ? "" : _searchValue;
 
-      const filter = searchValue ? { title: new RegExp(searchValue, "i") } : {};
+      const search = searchValue ? { title: new RegExp(searchValue, "i") } : {};
 
-      const totalCount = await PostsModel.countDocuments(filter);
-      const data = await PostsModel.find(filter)
+      const totalCount = await PostsModel.countDocuments(search);
+      const data = await PostsModel.find(search)
         .sort({ [sort]: order })
         .skip((page - 1) * perPage)
         .limit(perPage);

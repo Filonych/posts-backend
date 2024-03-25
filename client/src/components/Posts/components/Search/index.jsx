@@ -39,7 +39,7 @@ export const Search = ({ updatePosts }) => {
 
   return (
     <div>
-      <h3>Фильтрация</h3>
+      <h3>Поиск</h3>
       <Input type="text" value={inputValue} onChange={onChangeInput} />
     </div>
   );
