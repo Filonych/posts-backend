@@ -7,5 +7,6 @@ postsRoutes.get("/list", postsController.getPosts);
 postsRoutes.post("/add", postsController.addPost);
 postsRoutes.delete("/delete", postsController.deletePost);
 postsRoutes.put("/edit", postsController.editPost);
+postsRoutes.get("/list/:id", postsController.getPostById)
 
 module.exports = postsRoutes;
