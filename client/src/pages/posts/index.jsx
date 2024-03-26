@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Posts } from "../../components/Posts";
 import { Container } from "../../components/ui/Container";
 import { Typo } from "../../components/ui/Typo";
-import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "../../redux/slices/postsSlice";
 import { Loader } from "../../components/ui/Loader";
 import { Pagination } from "../../components/Pagination";
 import { Search } from "../../components/Posts/components/Search";
 import { Sorting } from "../../components/Posts/components/Sorting";
+import { getPosts } from "../../redux/slices/postsSlice";
+import { resetFilter } from "../../redux/slices/filterSlice";
 import * as SC from "./styles";
-import { resetFilter, setSearchValue } from "../../redux/slices/filterSlice";
 
 export const PostsPage = () => {
   const { list, loading } = useSelector((state) => state.posts.posts);
@@ -17,33 +17,19 @@ export const PostsPage = () => {
 
   useEffect(() => {
     dispatch(resetFilter());
-    dispatch(setSearchValue(""));
-    updatePosts();
+    dispatch(getPosts({}));
   }, []);
 
-  const updatePosts = (searchValue, currentPage, sort, order) => {
-    dispatch(getPosts({ searchValue, currentPage, sort, order }));
-  };
-
-  if (!list && loading) {
-    return <Loader />;
-  }
-
-  if (!list) {
-    return <Container>Error 404</Container>;
-  }
-
   return (
-    <>
+    <Container>
       <Typo>Публикации</Typo>
-      <Container>
-        <SC.Wrap>
-          <Search updatePosts={updatePosts} />
-          <Sorting updatePosts={updatePosts} />
-        </SC.Wrap>
-        <Posts posts={list} />
-        <Pagination updatePosts={updatePosts} />
-      </Container>
-    </>
+      <SC.Wrap>
+        <Search />
+        <Sorting />
+      </SC.Wrap>
+      {!list && loading && <Loader />}
+      {list && <Posts posts={list} />}
+      {list && <Pagination />}
+    </Container>
   );
 };

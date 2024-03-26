@@ -7,14 +7,24 @@ class PostsController {
 
       const page = parseInt(_page) || 1;
       const perPage = parseInt(_perPage) || 10;
+
+      // когда я отправляю запрос на сервер fetchPosts без параметров searchValue, currentPage, sort, order,
+      // то сюда они приходят именно как строка "undefined", а не как значение undefined,
+      // поэтому у меня проверка на равенство строке "undefined"
+
+      // console.log(_sort === 'undefined', typeof _sort, _sort)
+
+      // ты мне показывала на примере fetchFreshPosts и убирала там вот эти параметры (_sort=id&_order=desc),
+      // тогда непереданные параметры равны undefined. 
+      // А что делать в случае с fetchPosts?
+
       const sort = _sort === "undefined" ? "id" : _sort;
 
       const order =
         (_order && _order.toUpperCase() === "DESC") || _order === "undefined"
           ? -1
           : 1;
-      const searchValue =
-        _searchValue === "" || _searchValue === "undefined" ? "" : _searchValue;
+      const searchValue = _searchValue === "undefined" ? "" : _searchValue;
 
       const search = searchValue ? { title: new RegExp(searchValue, "i") } : {};
 

@@ -1,28 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setCurrentPage,
-  setSort,
-  setOrder,
-} from "../../../../redux/slices/filterSlice";
+import { changeFilter } from "../../../../redux/slices/filterSlice";
 import { Link } from "../../../ui/Link";
 import * as SC from "./styles";
+import { getPosts } from "../../../../redux/slices/postsSlice";
 
-export const Sorting = ({ updatePosts }) => {
-  const { searchValue, order } = useSelector(
-    (state) => state.filter.filter
-  );
+export const Sorting = () => {
+  const { searchValue, order } = useSelector((state) => state.filter.filter);
   const dispatch = useDispatch();
 
   const orderList = [
-    { name: "A-Z", orderProperty: "ASC" },
-    { name: "Z-A", orderProperty: "DESC" },
+    { name: "A-Z", order: "ASC" },
+    { name: "Z-A", order: "DESC" },
   ];
 
-  const sortPosts = (orderProperty) => {
-    dispatch(setSort("title"));
-    dispatch(setOrder(orderProperty));
-    dispatch(setCurrentPage(1));
-    updatePosts(searchValue, 1, "title", orderProperty);
+  const sortPosts = (order) => {
+    const currentPage = 1;
+    const sort = "title";
+
+    dispatch(changeFilter({ currentPage, sort, order }));
+    dispatch(getPosts({ searchValue, currentPage, sort, order }));
   };
 
   return (
@@ -31,8 +27,8 @@ export const Sorting = ({ updatePosts }) => {
       <SC.LinkWrap>
         {orderList.map((obj) => (
           <Link
-            onClick={() => sortPosts(obj.orderProperty)}
-            className={obj.orderProperty === order ? "active" : undefined}
+            onClick={() => sortPosts(obj.order)}
+            className={obj.order === order ? "active" : undefined}
             key={obj.name}
           >
             {obj.name}
