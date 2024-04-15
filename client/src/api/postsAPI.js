@@ -31,14 +31,14 @@ export const postsAPI = {
     }
   },
 
-  fetchbyId(id) {
+  async fetchbyId(id) {
     try {
       if (!id) {
         throw new Error("ID is broken");
       }
-      return fetch(`http://localhost:3003/api/posts/list/${id}`)
-        .then((response) => response.json())
-        .then((post) => post);
+      const response = await fetch(`http://localhost:3003/api/posts/list/${id}`)
+        const post = await response.json()
+        return post
     } catch (ex) {
       console.log(ex);
     }
